@@ -16,7 +16,6 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      floatingActionButton: const MyBottomNav(),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:getx_news_app/config/theme.dart';
-import 'package:getx_news_app/pages/homePage/home_page.dart';
+import 'package:getx_news_app/home_page_controller.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       themeMode: ThemeMode.system,
       darkTheme: darkTheme,
-      home: const HomePage(),
+      home: const HomePageController(),
     );
   }
 }
