@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:getx_news_app/components/navigationbar.dart';
+import 'package:get/get.dart';
 import 'package:getx_news_app/pages/homePage/widgets/news_tile.dart';
 import 'package:getx_news_app/pages/homePage/widgets/trending_card.dart';
+import 'package:getx_news_app/pages/newsDetails/news_details.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,18 +10,48 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Geo News",
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-        centerTitle: true,
-      ),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: const Icon(
+                      Icons.dashboard,
+                    ),
+                  ),
+                  const Text(
+                    "Geo News",
+                    style: TextStyle(
+                        fontSize: 25,
+                        fontFamily: "Poppins",
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 1.5),
+                  ),
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: const Icon(
+                      Icons.person,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -35,7 +66,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              const SingleChildScrollView(
+              SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
@@ -47,6 +78,9 @@ class HomePage extends StatelessWidget {
                       title:
                           'Apple opens App Store to game streaming services.',
                       author: 'Daniel Shahzada',
+                      ontap: () {
+                        Get.to(const NewsDetailsPage());
+                      },
                     ),
                     TrendingCard(
                       imageUrl:
@@ -56,6 +90,9 @@ class HomePage extends StatelessWidget {
                       title:
                           'Google’s Hugging Face deal puts ‘supercomputer’ power behind open-source AI.',
                       author: 'Daniel Shahzad',
+                      ontap: () {
+                        Get.to(const NewsDetailsPage());
+                      },
                     ),
                     TrendingCard(
                       imageUrl:
@@ -65,6 +102,9 @@ class HomePage extends StatelessWidget {
                       title:
                           'This Qi2 car mount is cheaper than a MagSafe charger and can fast-charge your iPhone 15.',
                       author: 'Daniel Shahzad',
+                      ontap: () {
+                        Get.to(const NewsDetailsPage());
+                      },
                     ),
                     TrendingCard(
                       imageUrl:
@@ -74,6 +114,9 @@ class HomePage extends StatelessWidget {
                       title:
                           'Two Nations, a Horrible Accident, and the Urgent Need to Understand the Laws of Space.',
                       author: 'Daniel Shahzad',
+                      ontap: () {
+                        Get.to(const NewsDetailsPage());
+                      },
                     ),
                     TrendingCard(
                       imageUrl:
@@ -83,6 +126,9 @@ class HomePage extends StatelessWidget {
                       title:
                           'We Tried a Dating App That Lets a Chatbot Break the Ice for You. It Got Weird.',
                       author: 'Daniel Shahzad',
+                      ontap: () {
+                        Get.to(const NewsDetailsPage());
+                      },
                     ),
                   ],
                 ),
@@ -102,7 +148,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              const Column(
+              Column(
                 children: [
                   NewsTile(
                     imageUrl:
@@ -111,6 +157,9 @@ class HomePage extends StatelessWidget {
                         "We Tried a Dating App That Lets a Chatbot Break the Ice for You. It Got Weird.",
                     time: "2 Days ago",
                     author: "Daniel Shahzada",
+                    ontap: () {
+                      Get.to(const NewsDetailsPage());
+                    },
                   ),
                   NewsTile(
                     imageUrl:
@@ -119,6 +168,9 @@ class HomePage extends StatelessWidget {
                         "We Tried a Dating App That Lets a Chatbot Break the Ice for You. It Got Weird.",
                     time: "2 Days ago",
                     author: "Daniel Shahzada",
+                    ontap: () {
+                      Get.to(const NewsDetailsPage());
+                    },
                   ),
                   NewsTile(
                     imageUrl:
@@ -127,6 +179,9 @@ class HomePage extends StatelessWidget {
                         "We Tried a Dating App That Lets a Chatbot Break the Ice for You. It Got Weird.",
                     time: "2 Days ago",
                     author: "Daniel Shahzada",
+                    ontap: () {
+                      Get.to(const NewsDetailsPage());
+                    },
                   ),
                 ],
               ),
