@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getx_news_app/components/navigationbar.dart';
 import 'package:getx_news_app/pages/homePage/widgets/news_tile.dart';
 import 'package:getx_news_app/pages/homePage/widgets/trending_card.dart';
 
@@ -15,69 +16,7 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            width: 200,
-            height: 60,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(100),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: 40,
-                  width: 40,
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Center(
-                    child: Icon(
-                      Icons.home,
-                      color: Theme.of(context).colorScheme.onBackground,
-                      size: 25,
-                    ),
-                  ),
-                ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    // color: Theme.of(context).colorScheme.primary,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Icon(
-                    Icons.book,
-                    color: Theme.of(context).colorScheme.onBackground,
-                    size: 25,
-                  ),
-                ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    // color: Theme.of(context).colorScheme.primary,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Icon(
-                    Icons.settings,
-                    color: Theme.of(context).colorScheme.onBackground,
-                    size: 25,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      floatingActionButton: const MyBottomNav(),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
