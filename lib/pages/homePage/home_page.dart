@@ -77,54 +77,28 @@ class HomePage extends StatelessWidget {
               Obx(
                 () => SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: newsController.trendingNewsList
-                        .map(
-                          (e) => TrendingCard(
-                            imageUrl: e.urlToImage!,
-                            tag: 'Trending no 1',
-                            time:
-                                timeago.format(DateTime.parse(e.publishedAt!)),
-                            title: e.title!,
-                            author: e.author ?? "Unknown",
-                            ontap: () {
-                              Get.to(NewsDetailsPage(news: e));
-                            },
-                          ),
-                        )
-                        .toList(),
-                  ),
+                  child: newsController.isTrendingNewsLoading.value
+                      ? const CircularProgressIndicator()
+                      : Row(
+                          children: newsController.trendingNewsList
+                              .map(
+                                (e) => TrendingCard(
+                                  imageUrl: e.urlToImage ??
+                                      "https://www.pacificfoodmachinery.com.au/media/catalog/product/placeholder/default/no-product-image-400x400.png",
+                                  tag: 'Trending no 1',
+                                  time: timeago
+                                      .format(DateTime.parse(e.publishedAt!)),
+                                  title: e.title!,
+                                  author: e.author ?? "Unknown",
+                                  ontap: () {
+                                    Get.to(NewsDetailsPage(news: e));
+                                  },
+                                ),
+                              )
+                              .toList(),
+                        ),
                 ),
               ),
-
-              // GetBuilder<NewsController>(
-              //   init: NewsController(),
-              //   builder: (newsController) {
-              //     return SingleChildScrollView(
-              //       scrollDirection: Axis.horizontal,
-              //       child: Row(
-              //         children: newsController.trendingNewsList
-              //             .map(
-              //               (e) => TrendingCard(
-              //                 imageUrl: e.urlToImage ??
-              //                     'https://duet-cdn.vox-cdn.com/thumbor/0x0:2040x1360/828x552/filters:focal(1020x680:1021x681):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/23598986/VRG_Illo_5258_K_Radtke_WWDC.jpg',
-              //                 tag: 'Trending no 1',
-              //                 time: timeago
-              //                     .format(DateTime.parse(e.publishedAt!)),
-              //                 title: e.title!,
-              //                 author: e.author ?? "Unknown",
-              //                 ontap: () {
-              //                   Get.to(NewsDetailsPage(
-              //                     news: e,
-              //                   ));
-              //                 },
-              //               ),
-              //             )
-              //             .toList(),
-              //       ),
-              //     );
-              //   },
-              // ),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,47 +114,142 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              // Obx(
-              //   () => Column(
-              //     children: newsController.newsForYou.take(10)
-              //         .map(
-              //           (e) => NewsTile(
-              //             imageUrl: e.urlToImage ??
-              //                 "https://media.wired.com/photos/65b1be205f4a6537c6308790/master/w_960,c_limit/People-Using-AI-Bots-To-Date-Business-1349387719.jpg",
-              //             title: e.title!,
-              //             time: timeago.format(DateTime.parse(e.publishedAt!)),
-              //             author: (e.author?.length ?? 0) > 20
-              //                 ? '${e.author!.substring(0, 20)}...'
-              //                 : e.author ?? "Unknown",
-              //             ontap: () {
-              //               Get.to(NewsDetailsPage(news: e));
-              //             },
-              //           ),
-              //         )
-              //         .toList(),
-              //   ),
-              // ),
-
-              GetBuilder<NewsController>(
-                builder: (newsController) => Column(
-                  children: newsController.newsForYou
-                      .take(10)
-                      .map(
-                        (e) => NewsTile(
-                          imageUrl: e.urlToImage ??
-                              "https://media.wired.com/photos/65b1be205f4a6537c6308790/master/w_960,c_limit/People-Using-AI-Bots-To-Date-Business-1349387719.jpg",
-                          title: e.title!,
-                          time: timeago.format(DateTime.parse(e.publishedAt!)),
-                          author: (e.author?.length ?? 0) > 20
-                              ? '${e.author!.substring(0, 20)}...'
-                              : e.author ?? "Unknown",
-                          ontap: () {
-                            Get.to(NewsDetailsPage(news: e));
-                          },
-                        ),
-                      )
-                      .toList(),
-                ),
+              Obx(
+                () => newsController.isNewsForYouLoading.value
+                    ? const CircularProgressIndicator()
+                    : Column(
+                        children: newsController.newsForYou5
+                            .map(
+                              (e) => NewsTile(
+                                imageUrl: e.urlToImage ??
+                                    "https://www.pacificfoodmachinery.com.au/media/catalog/product/placeholder/default/no-product-image-400x400.png",
+                                title: e.title!,
+                                time: timeago
+                                    .format(DateTime.parse(e.publishedAt!)),
+                                author: (e.author?.length ?? 0) > 20
+                                    ? '${e.author!.substring(0, 20)}...'
+                                    : e.author ?? "Unknown",
+                                ontap: () {
+                                  Get.to(NewsDetailsPage(news: e));
+                                },
+                              ),
+                            )
+                            .toList(),
+                      ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Apple News",
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Text(
+                    "See All",
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Obx(
+                () => newsController.isAppleNewsLoading.value
+                    ? const CircularProgressIndicator()
+                    : Column(
+                        children: newsController.appleNews5
+                            .map(
+                              (e) => NewsTile(
+                                imageUrl: e.urlToImage ??
+                                    "https://duet-cdn.vox-cdn.com/thumbor/0x0:2040x1360/828x552/filters:focal(1020x680:1021x681):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/23598986/VRG_Illo_5258_K_Radtke_WWDC.jpg",
+                                title: e.title!,
+                                time: timeago
+                                    .format(DateTime.parse(e.publishedAt!)),
+                                author: (e.author?.length ?? 0) > 20
+                                    ? '${e.author!.substring(0, 20)}...'
+                                    : e.author ?? "Unknown",
+                                ontap: () {
+                                  Get.to(NewsDetailsPage(news: e));
+                                },
+                              ),
+                            )
+                            .toList(),
+                      ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Tesla News",
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Text(
+                    "See All",
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Obx(
+                () => newsController.isTeslaNewsLoading.value
+                    ? const CircularProgressIndicator()
+                    : Column(
+                        children: newsController.teslaNews5
+                            .map(
+                              (e) => NewsTile(
+                                imageUrl: e.urlToImage ??
+                                    "https://www.teslarati.com/wp-content/uploads/2019/07/tesla-model-3-model-x-andres-ge-41-1024x683.jpg",
+                                title: e.title!,
+                                time: timeago
+                                    .format(DateTime.parse(e.publishedAt!)),
+                                author: (e.author?.length ?? 0) > 20
+                                    ? '${e.author!.substring(0, 20)}...'
+                                    : e.author ?? "Unknown",
+                                ontap: () {
+                                  Get.to(NewsDetailsPage(news: e));
+                                },
+                              ),
+                            )
+                            .toList(),
+                      ),
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Business News",
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  Text(
+                    "See All",
+                    style: Theme.of(context).textTheme.labelSmall,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Obx(
+                () => newsController.isBusinessNewsLoading.value
+                    ? const CircularProgressIndicator()
+                    : Column(
+                        children: newsController.businessNews5
+                            .map(
+                              (e) => NewsTile(
+                                imageUrl: e.urlToImage ??
+                                    "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2F32ddf8bc-a069-437d-af09-48b055f7bb16.jpg?source=next-home-page&dpr=2&width=580&fit=scale-down",
+                                title: e.title!,
+                                time: timeago
+                                    .format(DateTime.parse(e.publishedAt!)),
+                                author: (e.author?.length ?? 0) > 20
+                                    ? '${e.author!.substring(0, 20)}...'
+                                    : e.author ?? "Unknown",
+                                ontap: () {
+                                  Get.to(NewsDetailsPage(news: e));
+                                },
+                              ),
+                            )
+                            .toList(),
+                      ),
               ),
             ],
           ),

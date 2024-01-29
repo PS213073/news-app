@@ -48,7 +48,7 @@ class NewsDetailsPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                           child: Image.network(
                             news.urlToImage ??
-                                "https://duet-cdn.vox-cdn.com/thumbor/0x0:2040x1360/828x552/filters:focal(1020x680:1021x681):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/23598986/VRG_Illo_5258_K_Radtke_WWDC.jpg",
+                                "https://www.pacificfoodmachinery.com.au/media/catalog/product/placeholder/default/no-product-image-400x400.png",
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -85,7 +85,11 @@ class NewsDetailsPage extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      news.author ?? "unknown",
+                      (news.author?.length ?? 0) > 20
+                          ? '${news.author!.substring(0, 20)}...'
+                          : news.author ?? "Unknown",
+
+                      // news.author ?? "unknown",
                       style: TextStyle(
                           fontSize: 18,
                           color:
