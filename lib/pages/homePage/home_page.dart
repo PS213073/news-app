@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
                             title: e.title!,
                             author: e.author ?? "Unknown",
                             ontap: () {
-                              Get.to(const NewsDetailsPage());
+                              Get.to(NewsDetailsPage(news: e));
                             },
                           ),
                         )
@@ -151,7 +151,7 @@ class HomePage extends StatelessWidget {
                               ? '${e.author!.substring(0, 20)}...'
                               : e.author ?? "Unknown",
                           ontap: () {
-                            Get.to(const NewsDetailsPage());
+                            Get.to(NewsDetailsPage(news: e));
                           },
                         ),
                       )
