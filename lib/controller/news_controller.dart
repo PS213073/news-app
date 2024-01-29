@@ -37,7 +37,7 @@ class NewsController extends GetxController {
 
     try {
       var response = await http.get(Uri.parse(baseUrl));
-      print(response);
+      // print(response);
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
         var articles = body["articles"];
@@ -47,12 +47,12 @@ class NewsController extends GetxController {
         }
         // print(body);
       } else {
-        print("Somethings went wrong in trending news");
+        // print("Somethings went wrong in trending news");
       }
 
       // print(trendingNewsList);
     } catch (ex) {
-      print(ex);
+      // print(ex);
     }
     isTrendingNewsLoading.value = false;
   }
@@ -64,7 +64,7 @@ class NewsController extends GetxController {
 
     try {
       var response = await http.get(Uri.parse(baseUrl));
-      print(response);
+      // print(response);
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
         var articles = body["articles"];
@@ -74,10 +74,10 @@ class NewsController extends GetxController {
         }
         newsForYou5.value = newsForYou.sublist(0, 5).obs;
       } else {
-        print("Somethings went wrong in trending news");
+        // print("Somethings went wrong in trending news");
       }
     } catch (ex) {
-      print(ex);
+      // print(ex);
     }
     isNewsForYouLoading.value = false;
   }
@@ -89,7 +89,7 @@ class NewsController extends GetxController {
 
     try {
       var response = await http.get(Uri.parse(baseUrl));
-      print(response);
+      // print(response);
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
         var articles = body["articles"];
@@ -99,10 +99,10 @@ class NewsController extends GetxController {
         }
         appleNews5.value = appleNews.sublist(0, 5).obs;
       } else {
-        print("Somethings went wrong in trending news");
+        // print("Somethings went wrong in trending news");
       }
     } catch (ex) {
-      print(ex);
+      // print(ex);
     }
     isAppleNewsLoading.value = false;
   }
@@ -114,7 +114,7 @@ class NewsController extends GetxController {
 
     try {
       var response = await http.get(Uri.parse(baseUrl));
-      print(response);
+      // print(response);
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
         var articles = body["articles"];
@@ -124,10 +124,10 @@ class NewsController extends GetxController {
         }
         teslaNews5.value = teslaNews.sublist(0, 5).obs;
       } else {
-        print("Somethings went wrong in trending news");
+        // print("Somethings went wrong in trending news");
       }
     } catch (ex) {
-      print(ex);
+      // print(ex);
     }
     isTeslaNewsLoading.value = false;
   }
@@ -139,7 +139,7 @@ class NewsController extends GetxController {
 
     try {
       var response = await http.get(Uri.parse(baseUrl));
-      print(response);
+      // print(response);
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
         var articles = body["articles"];
@@ -149,10 +149,10 @@ class NewsController extends GetxController {
         }
         businessNews5.value = businessNews.sublist(0, 5).obs;
       } else {
-        print("Somethings went wrong in trending news");
+        // print("Somethings went wrong in trending news");
       }
     } catch (ex) {
-      print(ex);
+      // print(ex);
     }
     isBusinessNewsLoading.value = false;
   }

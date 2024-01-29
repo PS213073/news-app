@@ -23,6 +23,7 @@ class NewsDetailsPage extends StatelessWidget {
                       onTap: () {
                         Get.back();
                       },
+                      // ignore: avoid_unnecessary_containers
                       child: Container(
                         child: const Row(
                           children: [

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_news_app/components/news_tile_loading.dart';
+import 'package:getx_news_app/components/trending_loading_card.dart';
 import 'package:getx_news_app/controller/news_controller.dart';
 import 'package:getx_news_app/pages/homePage/widgets/news_tile.dart';
 import 'package:getx_news_app/pages/homePage/widgets/trending_card.dart';
@@ -34,7 +36,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    "Geo News",
+                    "Fake News",
                     style: TextStyle(
                         fontSize: 25,
                         fontFamily: "Poppins",
@@ -78,7 +80,12 @@ class HomePage extends StatelessWidget {
                 () => SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: newsController.isTrendingNewsLoading.value
-                      ? const CircularProgressIndicator()
+                      ? const Row(
+                          children: [
+                            TrendingLoadingCard(),
+                            TrendingLoadingCard(),
+                          ],
+                        )
                       : Row(
                           children: newsController.trendingNewsList
                               .map(
@@ -116,7 +123,13 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 20),
               Obx(
                 () => newsController.isNewsForYouLoading.value
-                    ? const CircularProgressIndicator()
+                    ? const Column(
+                        children: [
+                          NewsTileLoading(),
+                          NewsTileLoading(),
+                          NewsTileLoading(),
+                        ],
+                      )
                     : Column(
                         children: newsController.newsForYou5
                             .map(
@@ -154,7 +167,13 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 20),
               Obx(
                 () => newsController.isAppleNewsLoading.value
-                    ? const CircularProgressIndicator()
+                    ? const Column(
+                        children: [
+                          NewsTileLoading(),
+                          NewsTileLoading(),
+                          NewsTileLoading(),
+                        ],
+                      )
                     : Column(
                         children: newsController.appleNews5
                             .map(
@@ -192,7 +211,13 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 20),
               Obx(
                 () => newsController.isTeslaNewsLoading.value
-                    ? const CircularProgressIndicator()
+                    ? const Column(
+                        children: [
+                          NewsTileLoading(),
+                          NewsTileLoading(),
+                          NewsTileLoading(),
+                        ],
+                      )
                     : Column(
                         children: newsController.teslaNews5
                             .map(
@@ -230,7 +255,13 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 20),
               Obx(
                 () => newsController.isBusinessNewsLoading.value
-                    ? const CircularProgressIndicator()
+                    ? const Column(
+                        children: [
+                          NewsTileLoading(),
+                          NewsTileLoading(),
+                          NewsTileLoading(),
+                        ],
+                      )
                     : Column(
                         children: newsController.businessNews5
                             .map(

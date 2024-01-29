@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_news_app/components/news_tile_loading.dart';
 import 'package:getx_news_app/controller/news_controller.dart';
 import 'package:getx_news_app/pages/articlePage/widgets/search_widget.dart';
 import 'package:getx_news_app/pages/homePage/widgets/news_tile.dart';
@@ -22,7 +23,15 @@ class ArticlePage extends StatelessWidget {
               const SearchWidget(),
               const SizedBox(height: 20),
               newsController.isNewsForYouLoading.value
-                  ? const CircularProgressIndicator()
+                  ? const Column(
+                      children: [
+                        NewsTileLoading(),
+                        NewsTileLoading(),
+                        NewsTileLoading(),
+                        NewsTileLoading(),
+                        NewsTileLoading(),
+                      ],
+                    )
                   : Column(
                       children: newsController.newsForYou
                           .take(10)
