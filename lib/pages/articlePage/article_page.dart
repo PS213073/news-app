@@ -23,6 +23,7 @@ class ArticlePage extends StatelessWidget {
               const SizedBox(height: 20),
               Column(
                 children: newsController.newsForYou
+                    .take(10)
                     .map(
                       (e) => NewsTile(
                         imageUrl: e.urlToImage ??

@@ -105,16 +105,18 @@ class HomePage extends StatelessWidget {
               //       child: Row(
               //         children: newsController.trendingNewsList
               //             .map(
-              //               (element) => TrendingCard(
-              //                 imageUrl:
+              //               (e) => TrendingCard(
+              //                 imageUrl: e.urlToImage ??
               //                     'https://duet-cdn.vox-cdn.com/thumbor/0x0:2040x1360/828x552/filters:focal(1020x680:1021x681):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/23598986/VRG_Illo_5258_K_Radtke_WWDC.jpg',
               //                 tag: 'Trending no 1',
-              //                 time: '2 Days ago',
-              //                 title:
-              //                     'Apple opens App Store to game streaming services.',
-              //                 author: 'Daniel Shahzada',
+              //                 time: timeago
+              //                     .format(DateTime.parse(e.publishedAt!)),
+              //                 title: e.title!,
+              //                 author: e.author ?? "Unknown",
               //                 ontap: () {
-              //                   Get.to(const NewsDetailsPage());
+              //                   Get.to(NewsDetailsPage(
+              //                     news: e,
+              //                   ));
               //                 },
               //               ),
               //             )
@@ -138,9 +140,31 @@ class HomePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              Obx(
-                () => Column(
+              // Obx(
+              //   () => Column(
+              //     children: newsController.newsForYou.take(10)
+              //         .map(
+              //           (e) => NewsTile(
+              //             imageUrl: e.urlToImage ??
+              //                 "https://media.wired.com/photos/65b1be205f4a6537c6308790/master/w_960,c_limit/People-Using-AI-Bots-To-Date-Business-1349387719.jpg",
+              //             title: e.title!,
+              //             time: timeago.format(DateTime.parse(e.publishedAt!)),
+              //             author: (e.author?.length ?? 0) > 20
+              //                 ? '${e.author!.substring(0, 20)}...'
+              //                 : e.author ?? "Unknown",
+              //             ontap: () {
+              //               Get.to(NewsDetailsPage(news: e));
+              //             },
+              //           ),
+              //         )
+              //         .toList(),
+              //   ),
+              // ),
+
+              GetBuilder<NewsController>(
+                builder: (newsController) => Column(
                   children: newsController.newsForYou
+                      .take(10)
                       .map(
                         (e) => NewsTile(
                           imageUrl: e.urlToImage ??
