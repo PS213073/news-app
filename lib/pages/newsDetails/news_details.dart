@@ -81,8 +81,10 @@ class NewsDetailsPage extends StatelessWidget {
                       radius: 15,
                       backgroundColor: Colors.red,
                       child: Text(
-                        news.author![0],
-                      ),
+                          // (news.author != null && news.author!.isNotEmpty)
+                          //     ? news.author![0]
+                          //     : "U",
+                          news.author![0]),
                     ),
                     const SizedBox(width: 10),
                     Text(

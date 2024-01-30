@@ -37,7 +37,7 @@ class NewsController extends GetxController {
 
     try {
       var response = await http.get(Uri.parse(baseUrl));
-      // print(response);
+      print(response);
       if (response.statusCode == 200) {
         var body = jsonDecode(response.body);
         var articles = body["articles"];
@@ -45,14 +45,16 @@ class NewsController extends GetxController {
         for (var news in articles) {
           trendingNewsList.add(NewsModel.fromJson(news));
         }
-        // print(body);
+        print(body);
       } else {
         // print("Somethings went wrong in trending news");
+        print('Status code: ${response.statusCode}');
+        print('Status code: ${response.body}');
       }
 
-      // print(trendingNewsList);
+      print(trendingNewsList);
     } catch (ex) {
-      // print(ex);
+      print(ex);
     }
     isTrendingNewsLoading.value = false;
   }
@@ -155,5 +157,35 @@ class NewsController extends GetxController {
       // print(ex);
     }
     isBusinessNewsLoading.value = false;
+  }
+
+  Future<void> searchNews(String search) async {
+    isNewsForYouLoading.value = true;
+    var baseUrl =
+        "https://newsapi.org/v2/everything?q=$search&apiKey=59bf9a6d3e9e46b9a24993889c9218c4";
+
+    try {
+      var response = await http.get(Uri.parse(baseUrl));
+      // print(response);
+      if (response.statusCode == 200) {
+        var body = jsonDecode(response.body);
+        var articles = body["articles"];
+        newsForYou.clear();
+
+        int i = 0;
+        for (var news in articles) {
+          i++;
+          newsForYou.add(NewsModel.fromJson(news));
+          if (i == 10) {
+            break;
+          }
+        }
+      } else {
+        print("Somethings went wrong in trending news");
+      }
+    } catch (ex) {
+      // print(ex);
+    }
+    isNewsForYouLoading.value = false;
   }
 }

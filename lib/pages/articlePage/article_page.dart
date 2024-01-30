@@ -32,27 +32,29 @@ class ArticlePage extends StatelessWidget {
                         NewsTileLoading(),
                       ],
                     )
-                  : Column(
-                      children: newsController.newsForYou
-                          .take(10)
-                          .map(
-                            (e) => NewsTile(
-                              imageUrl: e.urlToImage ??
-                                  "https://www.pacificfoodmachinery.com.au/media/catalog/product/placeholder/default/no-product-image-400x400.png",
-                              title: e.title!,
-                              time: timeago
-                                  .format(DateTime.parse(e.publishedAt!)),
-                              author: (e.author?.length ?? 0) > 20
-                                  ? '${e.author!.substring(0, 20)}...'
-                                  : e.author ?? "Unknown",
-                              ontap: () {
-                                Get.to(NewsDetailsPage(
-                                  news: e,
-                                ));
-                              },
-                            ),
-                          )
-                          .toList(),
+                  : Obx(
+                      () => Column(
+                        children: newsController.newsForYou
+                            .take(10)
+                            .map(
+                              (e) => NewsTile(
+                                imageUrl: e.urlToImage ??
+                                    "https://www.pacificfoodmachinery.com.au/media/catalog/product/placeholder/default/no-product-image-400x400.png",
+                                title: e.title!,
+                                time: timeago
+                                    .format(DateTime.parse(e.publishedAt!)),
+                                author: (e.author?.length ?? 0) > 20
+                                    ? '${e.author!.substring(0, 20)}...'
+                                    : e.author ?? "Unknown",
+                                ontap: () {
+                                  Get.to(NewsDetailsPage(
+                                    news: e,
+                                  ));
+                                },
+                              ),
+                            )
+                            .toList(),
+                      ),
                     ),
             ],
           ),
