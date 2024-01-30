@@ -4,7 +4,7 @@ This is a news application built with Flutter and the GetX state management libr
 
 ## Screenshots
 
-![App Screenshot](![Screenshot 2024-01-30 193004](https://github.com/PS213073/news-app/assets/107118950/fd456a1d-bb3b-4b19-8c1d-86cfa62d540e))
+(![Screenshot 2024-01-30 193004](https://github.com/PS213073/news-app/assets/107118950/fd456a1d-bb3b-4b19-8c1d-86cfa62d540e))
 
 ![Screenshot 2024-01-30 193111](https://github.com/PS213073/news-app/assets/107118950/92479ef0-a3c4-469e-8b91-f01b975b3bc0)
 
